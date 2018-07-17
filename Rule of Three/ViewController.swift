@@ -26,22 +26,36 @@ class ViewController: NSViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		NSEvent.addLocalMonitorForEvents(matching: .keyUp) {
-			print("key up")
-			return $0
+		
+		NSEvent.addLocalMonitorForEvents(matching: .keyDown) {
+			switch $0.keyCode {
+			case 18...23, 25, 26, 28, 29, 47, 48, 36, 51, 65, 82...92:
+				return $0
+			default:
+				return nil
+			}
 		}
+		
+	}
+	override func keyUp(with event: NSEvent) {
+		calculate()
+	}
+	func calculate() {
 		
 	}
 	override func viewWillAppear() {
 		view.window?.makeFirstResponder(firstIf)
-		print("view will appear")
 	}
 	override var representedObject: Any? {
 		didSet {
 		// Update the view, if already loaded.
 		}
 	}
-
+	func textFieldValDidCheng(_ textField: NSTextField) {
+		//let formatter = NSNumberFormatter
+		//formatter.numberStyle = NumberFormatter.Style.decimal
+		
+	}
 	@IBAction func changeRule(_ sender: Any) {
 		if currentRule == .direct {
 			currentRule = .inverse
@@ -68,3 +82,4 @@ extension ViewController {
 		return viewcontroller
 	}
 }
+
