@@ -8,15 +8,17 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class ViewController: NSViewController, NSTextFieldDelegate {
 	enum rule {
 		case direct
 		case inverse
 	}
 	// Variables:
 	var currentRule = rule.direct
+	var currentFraction = 2
 	
 	@IBOutlet weak var ruleButton: NSButton!
+	@IBOutlet weak var ruleButton2: NSButton!
 	
 	@IBOutlet weak var firstIf: NSTextField!
 	@IBOutlet weak var firstIs: NSTextField!
@@ -26,6 +28,9 @@ class ViewController: NSViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		firstIf.delegate = self
+		firstIs.delegate = self
+		secondIf.delegate = self
 		
 		NSEvent.addLocalMonitorForEvents(matching: .keyDown) {
 			switch $0.keyCode {
@@ -37,11 +42,29 @@ class ViewController: NSViewController {
 		}
 		
 	}
-	override func keyUp(with event: NSEvent) {
+	override func controlTextDidChange(_ obj: Notification) {
 		calculate()
-	}
+	}	
 	func calculate() {
+		switch currentRule {
+		case .direct:
+			calculateDirect()
+		case .inverse:
+			calculateInverse()
+		}
+	}
+	func calculateDirect() {
 		
+		let result = firstIs.doubleValue * secondIf.doubleValue / firstIf.doubleValue
+		
+		secondIs.doubleValue = result.rounded(toPlaces: currentFraction)
+		
+	}
+	func calculateInverse() {
+		
+		let result = firstIs.doubleValue * firstIf.doubleValue / secondIf.doubleValue
+		
+		secondIs.doubleValue = result.rounded(toPlaces: currentFraction)
 	}
 	override func viewWillAppear() {
 		view.window?.makeFirstResponder(firstIf)
@@ -51,21 +74,42 @@ class ViewController: NSViewController {
 		// Update the view, if already loaded.
 		}
 	}
-	func textFieldValDidCheng(_ textField: NSTextField) {
-		//let formatter = NSNumberFormatter
-		//formatter.numberStyle = NumberFormatter.Style.decimal
-		
-	}
 	@IBAction func changeRule(_ sender: Any) {
 		if currentRule == .direct {
 			currentRule = .inverse
 			ruleButton.image = NSImage(named: NSImage.Name(rawValue: "inverse"))
+			ruleButton2.title = "Direct"
+			calculateInverse()
 		} else {
 			currentRule = .direct
 			ruleButton.image = NSImage(named: NSImage.Name(rawValue: "direct"))
+			ruleButton2.title = "Inverse"
+			calculateDirect()
 		}
 	}
-	
+	@IBAction func reset(_ sender: Any) {
+		firstIs.stringValue = ""
+		firstIf.stringValue = ""
+		secondIf.stringValue = ""
+		secondIs.stringValue = ""
+	}
+	@IBAction func copy(_ sender: Any) {
+		let string = secondIs.stringValue
+		writeToPasteboard(pasteboard: NSPasteboard.general, string: string)
+	}
+	@IBAction func quit(_ sender: Any) {
+		NSApplication.shared.terminate(self)
+	}
+	@IBAction func setFraction(_ sender: NSPopUpButtonCell) {
+		currentFraction = sender.indexOfSelectedItem
+		calculate()
+	}
+	func writeToPasteboard(pasteboard: NSPasteboard, string: String) {
+		if string != "" {
+			pasteboard.clearContents()
+			pasteboard.writeObjects([string as NSPasteboardWriting])
+		}
+	}
 }
 
 extension ViewController {
@@ -80,6 +124,13 @@ extension ViewController {
 			fatalError("Why cant i find QuotesViewController? - Check Main.storyboard")
 		}
 		return viewcontroller
+	}
+}
+extension Double {
+	/// Rounds the double to decimal places value
+	func rounded(toPlaces places:Int) -> Double {
+		let divisor = pow(10.0, Double(places))
+		return (self * divisor).rounded() / divisor
 	}
 }
 

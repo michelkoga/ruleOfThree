@@ -10,11 +10,11 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
 	let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 	let popover = NSPopover()
 	
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
+		popover.animates = false
 		if let button = statusItem.button {
 			NSEvent.addGlobalMonitorForEvents(matching: .leftMouseDown) {_ in
 				self.popover.close()
@@ -31,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			showPopover(sender: sender)
 		}
 	}
-	
+
 	func showPopover(sender: Any?) {
 		if let button = statusItem.button {
 			popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
