@@ -44,7 +44,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
 	}
 	override func controlTextDidChange(_ obj: Notification) {
 		calculate()
-	}	
+	}
 	func calculate() {
 		switch currentRule {
 		case .direct:
@@ -54,15 +54,29 @@ class ViewController: NSViewController, NSTextFieldDelegate {
 		}
 	}
 	func calculateDirect() {
+		let a = Double(firstIf.stringValue.replacingOccurrences(of: ",", with: ""))
+		let b = Double(firstIs.stringValue.replacingOccurrences(of: ",", with: ""))
+		let c = Double(secondIf.stringValue.replacingOccurrences(of: ",", with: ""))
 		
-		let result = firstIs.doubleValue * secondIf.doubleValue / firstIf.doubleValue
+		if (a == nil) { return }
+		if (b == nil) { return }
+		if (c == nil) { return }
+		
+		let result = b! * c! / a!
 		
 		secondIs.doubleValue = result.rounded(toPlaces: currentFraction)
 		
 	}
 	func calculateInverse() {
+		let a = Double(firstIf.stringValue.replacingOccurrences(of: ",", with: ""))
+		let b = Double(firstIs.stringValue.replacingOccurrences(of: ",", with: ""))
+		let c = Double(secondIf.stringValue.replacingOccurrences(of: ",", with: ""))
 		
-		let result = firstIs.doubleValue * firstIf.doubleValue / secondIf.doubleValue
+		if (a == nil) { return }
+		if (b == nil) { return }
+		if (c == nil) { return }
+		
+		let result = b! * a! / c!
 		
 		secondIs.doubleValue = result.rounded(toPlaces: currentFraction)
 	}

@@ -1,17 +1,13 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "mac",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
-      "filename" : "menuBarIcons.png",
+      "idiom" : "mac",
+      "filename" : "ruleOfThree.png",
       "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
     }
   ],
   "info" : {
