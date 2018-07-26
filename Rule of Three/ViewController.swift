@@ -28,6 +28,21 @@ class ViewController: NSViewController, NSTextFieldDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		let text = "444555.50"
+		let convert = text.convertToDotDecimalStyle
+		print(convert)
+		let text2 = "1260033344455550"
+		let convert2 = text2.convertToDotDecimalStyle
+		print(convert2)
+		let text3 = "12,600333444,555.50"
+		let convert3 = text3.convertToDotDecimalStyle
+		print(convert3)
+		let text4 = "50"
+		let convert4 = text4.convertToDotDecimalStyle
+		print(convert4)
+		
+		
 		firstIf.delegate = self
 		firstIs.delegate = self
 		secondIf.delegate = self
@@ -43,6 +58,7 @@ class ViewController: NSViewController, NSTextFieldDelegate {
 		
 	}
 	override func controlTextDidChange(_ obj: Notification) {
+		
 		calculate()
 	}
 	func calculate() {
@@ -123,6 +139,12 @@ class ViewController: NSViewController, NSTextFieldDelegate {
 			pasteboard.clearContents()
 			pasteboard.writeObjects([string as NSPasteboardWriting])
 		}
+	}
+	
+	@IBAction func openPreferences(_ sender: Any) {
+		let vcStores = self.storyboard?.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("Preferences"))
+			as! NSViewController
+		self.view.window?.contentViewController = vcStores
 	}
 }
 

@@ -15,6 +15,8 @@
 		DE6F050C20FDD61400D7FBB8 /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6F050B20FDD61400D7FBB8 /* Window.swift */; };
 		DE6F050E20FDE12000D7FBB8 /* ToDo in Resources */ = {isa = PBXBuildFile; fileRef = DE6F050D20FDE12000D7FBB8 /* ToDo */; };
 		DE6F051020FDE33700D7FBB8 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6F050F20FDE33700D7FBB8 /* Button.swift */; };
+		DE8B79212108374C00B0D8BD /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B79202108374C00B0D8BD /* Converter.swift */; };
+		DE8B7923210865F800B0D8BD /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE8B7922210865F800B0D8BD /* PreferencesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		DE6F050B20FDD61400D7FBB8 /* Window.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
 		DE6F050D20FDE12000D7FBB8 /* ToDo */ = {isa = PBXFileReference; lastKnownFileType = text; path = ToDo; sourceTree = "<group>"; };
 		DE6F050F20FDE33700D7FBB8 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		DE8B79202108374C00B0D8BD /* Converter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
+		DE8B7922210865F800B0D8BD /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +67,10 @@
 			children = (
 				DE48707E20FD6AAA00E48EE3 /* AppDelegate.swift */,
 				DE48708020FD6AAA00E48EE3 /* ViewController.swift */,
+				DE8B79202108374C00B0D8BD /* Converter.swift */,
 				DE48708220FD6AAC00E48EE3 /* Assets.xcassets */,
 				DE48708420FD6AAC00E48EE3 /* Main.storyboard */,
+				DE8B7922210865F800B0D8BD /* PreferencesViewController.swift */,
 				DE6F050B20FDD61400D7FBB8 /* Window.swift */,
 				DE6F050920FDB61300D7FBB8 /* TextField.swift */,
 				DE6F050D20FDE12000D7FBB8 /* ToDo */,
@@ -150,6 +156,8 @@
 				DE6F050A20FDB61300D7FBB8 /* TextField.swift in Sources */,
 				DE48708120FD6AAA00E48EE3 /* ViewController.swift in Sources */,
 				DE48707F20FD6AAA00E48EE3 /* AppDelegate.swift in Sources */,
+				DE8B79212108374C00B0D8BD /* Converter.swift in Sources */,
+				DE8B7923210865F800B0D8BD /* PreferencesViewController.swift in Sources */,
 				DE6F050C20FDD61400D7FBB8 /* Window.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
